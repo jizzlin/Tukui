@@ -496,10 +496,10 @@ end
 T.PostNamePosition = function(self)
 	self.Name:ClearAllPoints()
 	if (self.Power.value:GetText() and UnitIsEnemy("player", "target") and C["unitframes"].targetpowerpvponly == true) or (self.Power.value:GetText() and C["unitframes"].targetpowerpvponly == false) then
-		self.Name:SetPoint("CENTER", self.panel, "CENTER", 0, 0)
+		self.Name:SetPoint("CENTER", self.health, "CENTER", 0, 0)
 	else
 		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("LEFT", self.panel, "LEFT", 4, 0)
+		self.Name:SetPoint("LEFT", self.power, "LEFT", 2, 7)
 	end
 end
 
@@ -871,13 +871,13 @@ T.UpdateThreat = function(self, event, unit)
 	if (threat == 3) then
 		if self.panel then
 			self.panel:SetBackdropBorderColor(.69,.31,.31,1)
-		else
+		elseif self.Name then
 			self.Name:SetTextColor(1,0.1,0.1)
 		end
 	else
 		if self.panel then
 			self.panel:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
-		else
+		elseif self.Name then
 			self.Name:SetTextColor(1,1,1)
 		end
 	end 
