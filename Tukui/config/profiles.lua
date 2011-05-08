@@ -13,9 +13,20 @@ end
 -- Name need to be case sensitive
 ----------------------------------------------------------------------------
 
-if T.myname == "Tukz" then
-	-- yeah my default config is not really like default tukui.
-	C.actionbar.hotkey = false
-	C.actionbar.hideshapeshift = true
-	C.unitframes.enemyhcolor = true
+if T.myname == "Doomunit" then
+end
+
+if T.myname == "Crimtotem" then
+end
+
+if T.myname == "Moraane" then
+end
+
+if T.myname == "Gizlin" then
+end
+
+if T.myname == "Jizzlin" then
+end
+
+if T.myname == "Jeabus" then
 end
