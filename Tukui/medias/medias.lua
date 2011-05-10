@@ -35,7 +35,7 @@ C["media"] = {
 	["pixelfont"] = [=[Interface\Addons\Tukui\medias\fonts\pixel_font.ttf]=], -- general font of tukui
 	
 	-- textures
-	["normTex"] = [[Interface\AddOns\Tukui\medias\textures\normTex]], -- texture used for tukui healthbar/powerbar/etc
+	["normTex"] = [[Interface\AddOns\Tukui\medias\textures\gradient]], -- texture used for tukui healthbar/powerbar/etc
 	["glowTex"] = [[Interface\AddOns\Tukui\medias\textures\glowTex]], -- the glow text around some frame.
 	["bubbleTex"] = [[Interface\AddOns\Tukui\medias\textures\bubbleTex]], -- unitframes combo points
 	["copyicon"] = [[Interface\AddOns\Tukui\medias\textures\copy]], -- copy icon
