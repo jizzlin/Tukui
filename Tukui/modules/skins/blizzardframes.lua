@@ -754,19 +754,33 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			"PlayerTalentFrame",
 			"PlayerTalentFrameInset",
 			"PlayerTalentFrameTalents",
-			"PlayerTalentFramePanel1",
-			"PlayerTalentFramePanel2",
-			"PlayerTalentFramePanel3",	
 			"PlayerTalentFramePanel1HeaderIcon",
 			"PlayerTalentFramePanel2HeaderIcon",
 			"PlayerTalentFramePanel3HeaderIcon",
 			"PlayerTalentFramePetTalents",
-			"PlayerTalentFramePetPanel"
 		}
 
 		for _, object in pairs(StripAllTextures) do
 			_G[object]:StripTextures()
 		end
+		
+		local function StripTalentFramePanelTextures(object)
+			for i=1, object:GetNumRegions() do
+				local region = select(i, object:GetRegions())
+				if region:GetObjectType() == "Texture" then
+					if region:GetName():find("Branch") then
+						region:SetDrawLayer("OVERLAY")
+					else
+						region:SetTexture(nil)
+					end
+				end
+			end
+		end
+		
+		StripTalentFramePanelTextures(PlayerTalentFramePanel1)
+		StripTalentFramePanelTextures(PlayerTalentFramePanel2)
+		StripTalentFramePanelTextures(PlayerTalentFramePanel3)
+		StripTalentFramePanelTextures(PlayerTalentFramePetPanel)		
 		
 		for i=1, 3 do
 			_G["PlayerTalentFramePanel"..i.."SelectTreeButton"]:SetFrameLevel(_G["PlayerTalentFramePanel"..i.."SelectTreeButton"]:GetFrameLevel() + 5)
@@ -778,10 +792,6 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 			"PlayerTalentFramePanel1InactiveShadow",
 			"PlayerTalentFramePanel2InactiveShadow",
 			"PlayerTalentFramePanel3InactiveShadow",
-			"PlayerTalentFramePanel1Arrow",
-			"PlayerTalentFramePanel2Arrow",
-			"PlayerTalentFramePanel3Arrow",
-			"PlayerTalentFramePetPanelArrow",
 			"PlayerTalentFramePanel1SummaryRoleIcon",
 			"PlayerTalentFramePanel2SummaryRoleIcon",
 			"PlayerTalentFramePanel3SummaryRoleIcon",
@@ -791,6 +801,11 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 		for _, texture in pairs(KillTextures) do
 			_G[texture]:Kill()
 		end
+		
+		for i=1, 3 do
+			_G["PlayerTalentFramePanel"..i.."Arrow"]:SetFrameStrata("HIGH")
+		end
+		PlayerTalentFramePetPanelArrow:SetFrameStrata("HIGH")
 
 		PlayerTalentFrame:SetTemplate("Default")
 		PlayerTalentFramePanel1:CreateBackdrop("Default")
@@ -1662,6 +1677,54 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	
 	-- stuff not in Blizzard load-on-demand
 	if addon == "Tukui" then
+		-- merchant frame
+		do
+			MerchantFrame:StripTextures(true)
+			MerchantFrame:SetTemplate("Default")
+			MerchantFrame:CreateShadow("Default")
+			MerchantFrame:SetWidth(360)
+
+			MerchantBuyBackItem:StripTextures()
+
+			MerchantFrameTab1:StripTextures()
+			MerchantFrameTab2:StripTextures()
+			SkinTab(MerchantFrameTab1)
+			SkinTab(MerchantFrameTab2)
+
+			SkinCloseButton(MerchantFrameCloseButton)
+			
+			--MerchantPrevPageButton:StripTextures()
+			SkinNextPrevButton(MerchantPrevPageButton)
+			SkinNextPrevButton(MerchantNextPageButton)
+
+			for i=1,12 do
+				local bg = _G["MerchantItem"..i]
+				bg:StripTextures() 
+				
+				local b = _G["MerchantItem"..i.."ItemButton"]
+				b:StripTextures()
+				b:SetTemplate("Default")
+				
+				local t = _G["MerchantItem"..i.."ItemButtonIconTexture"]
+				t:SetTexCoord(.08, .92, .08, .92)
+				t:ClearAllPoints()
+				t:Point("TOPLEFT", 2, -2)
+				t:Point("BOTTOMRIGHT", -2, 2)
+			end
+			
+			MerchantBuyBackItemItemButton:StripTextures()
+			MerchantBuyBackItemItemButton:SetTemplate("Default")
+			MerchantBuyBackItemItemButtonIconTexture:SetTexCoord(.08, .92, .08, .92)
+			MerchantBuyBackItemItemButtonIconTexture:ClearAllPoints()
+			MerchantBuyBackItemItemButtonIconTexture:Point("TOPLEFT", 2, -2)
+			MerchantBuyBackItemItemButtonIconTexture:Point("BOTTOMRIGHT", -2, 2)
+			
+			--Reposition tabs
+			MerchantFrameTab1:ClearAllPoints()
+			MerchantFrameTab1:SetPoint("TOPLEFT", MerchantFrame, "BOTTOMLEFT", 0, 0)
+			MerchantFrameTab1.SetPoint = T.dummy
+		end	
+
 		-- skin help frame
 		do
 			local frames = {
@@ -1696,8 +1759,21 @@ TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 				_G[frames[i]]:StripTextures(true)
 				_G[frames[i]]:CreateBackdrop("Default")
 			end
-			
+
 			HelpFrameHeader:SetFrameLevel(HelpFrameHeader:GetFrameLevel() + 2)
+
+			HelpFrameTicketScrollFrame:StripTextures()
+			HelpFrameTicketScrollFrame:CreateBackdrop("Default")
+			HelpFrameTicketScrollFrame.backdrop:Point("TOPLEFT", -4, 4)
+			HelpFrameTicketScrollFrame.backdrop:Point("BOTTOMRIGHT", 6, -4)
+			for i=1, HelpFrameTicket:GetNumChildren() do
+				local child = select(i, HelpFrameTicket:GetChildren())
+				if not child:GetName() then
+					child:StripTextures()
+				end
+			end
+			
+			SkinScrollBar(HelpFrameKnowledgebaseScrollFrame2ScrollBar)
 			
 			-- skin sub buttons
 			for i = 1, #buttons do

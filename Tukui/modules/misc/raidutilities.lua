@@ -115,7 +115,7 @@ local function CreateUtilities(self, event, addon)
 		--Reposition/Resize and Reuse the World Marker Button
 		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:ClearAllPoints()
 		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetPoint("TOPRIGHT", TukuiRaidUtilityMainAssistButton, "BOTTOMRIGHT", 0, T.Scale(-5))
-		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetParent("TukuiRaidUtility")
+		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetParent(TukuiRaidUtility)
 		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetHeight(T.Scale(21))
 		CompactRaidFrameManagerDisplayFrameLeaderOptionsRaidWorldMarkerButton:SetWidth(TukuiRaidUtilityRoleCheckButton:GetWidth() * 0.22)
 
@@ -160,8 +160,8 @@ local function CreateUtilities(self, event, addon)
 				return
 			end
 
-			if not TukuiRaidUtility.toggled and CheckRaidStatus() then
-				TukuiRaidUtilityShowButton:Show()
+			if CheckRaidStatus() then
+				if not TukuiRaidUtility.toggled then TukuiRaidUtilityShowButton:Show() end
 			else
 				TukuiRaidUtilityShowButton:Hide()
 				if TukuiRaidUtility:IsShown() then TukuiRaidUtility:Hide() end
