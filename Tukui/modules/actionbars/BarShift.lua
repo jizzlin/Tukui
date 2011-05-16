@@ -7,7 +7,11 @@ if not C["actionbar"].enable == true then return end
 
 -- used for anchor totembar or shapeshiftbar
 local TukuiShift = CreateFrame("Frame","TukuiShiftBar",UIParent)
-TukuiShift:SetPoint("TOPLEFT", 4, -46)
+if C.actionbar.ShpShftOverPlayer == true then
+	TukuiShift:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 12, 37)
+else
+	TukuiShift:SetPoint("TOPLEFT", 4, -46)
+end
 TukuiShift:SetWidth((T.petbuttonsize * 5) + (T.petbuttonsize * 4))
 TukuiShift:SetHeight(10)
 TukuiShift:SetFrameStrata("MEDIUM")
@@ -60,10 +64,14 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			button:SetParent(self)
 			button:SetFrameStrata("LOW")
 			if i == 1 then
-				button:Point("BOTTOMLEFT", TukuiShift, 0, 24)
+					button:Point("BOTTOMLEFT", TukuiShift, 0, 24)
 			else
 				local previous = _G["ShapeshiftButton"..i-1]
-				button:Point("LEFT", previous, "RIGHT", T.buttonspacing, 0)
+				if C.actionbar.ShpShftOverPlayer == true then
+					button:Point("LEFT", previous, "RIGHT", 5 * T.buttonspacing, 0)
+				else
+					button:Point("LEFT", previous, "RIGHT", T.buttonspacing, 0)
+				end
 			end
 			local _, name = GetShapeshiftFormInfo(i)
 			if name then

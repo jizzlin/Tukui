@@ -499,7 +499,7 @@ T.PostNamePosition = function(self)
 		self.Name:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 	else
 		self.Power.value:SetAlpha(0)
-		self.Name:SetPoint("LEFT", self.Power, "LEFT", 2, 7)
+		self.Name:SetPoint("LEFT", self.Health, "LEFT", 2, 2)
 	end
 end
 

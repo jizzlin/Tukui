@@ -14,12 +14,15 @@ end
 ----------------------------------------------------------------------------
 
 if T.myname == "Doomunit" then
+	C.actionbar.ShpShftOverPlayer = true
 end
 
 if T.myname == "Crimtotem" then
+	C.actionbar.ShpShftOverPlayer = true
 end
 
 if T.myname == "Moraane" then
+	C.actionbar.ShpShftOverPlayer = true
 end
 
 if T.myname == "Gizlin" then
