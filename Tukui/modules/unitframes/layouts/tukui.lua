@@ -1039,29 +1039,38 @@ local function Shared(self, unit)
 			self.Castbar = castbar
 			
 			if not T.lowversion then
-				castbar.bg = castbar:CreateTexture(nil, "BORDER")
-				castbar.bg:SetAllPoints(castbar)
-				castbar.bg:SetTexture(normTex)
-				castbar.bg:SetVertexColor(0.15, 0.15, 0.15)
-				castbar:SetFrameLevel(6)
-				castbar:Point("TOPLEFT", panel, 2, -2)
-				castbar:Point("BOTTOMRIGHT", panel, -2, 2)
-				
-				castbar.CustomTimeText = T.CustomCastTimeText
-				castbar.CustomDelayText = T.CustomCastDelayText
-				castbar.PostCastStart = T.CheckCast
-				castbar.PostChannelStart = T.CheckChannel
+				local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
+			castbar:SetPoint("LEFT", 2, -4)
+			castbar:SetPoint("RIGHT", -2, -4)
+			castbar:SetPoint("TOP", 0, 26)
+			
+			castbar:SetHeight(16)
+			castbar:SetStatusBarTexture(normTex)
+			castbar:SetFrameLevel(6)
+			
+			castbar.bg = CreateFrame("Frame", nil, castbar)
+			castbar.bg:SetTemplate("Default")
+			castbar.bg:SetBackdropBorderColor(unpack(C["media"].altbordercolor))
+			castbar.bg:Point("TOPLEFT", -2, 2)
+			castbar.bg:Point("BOTTOMRIGHT", 2, -2)
+			castbar.bg:SetFrameLevel(5)
+			
+			castbar.time = T.SetFontString(castbar, font1, 12)
+			castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
+			castbar.time:SetTextColor(0.84, 0.75, 0.65)
+			castbar.time:SetJustifyH("RIGHT")
+			castbar.CustomTimeText = T.CustomCastTimeText
 
-				castbar.time = T.SetFontString(castbar, font1, 12)
-				castbar.time:Point("RIGHT", panel, "RIGHT", -4, 0)
-				castbar.time:SetTextColor(0.84, 0.75, 0.65)
-				castbar.time:SetJustifyH("RIGHT")
-
-				castbar.Text = T.SetFontString(castbar, font1, 12)
-				castbar.Text:Point("LEFT", panel, "LEFT", 4, 0)
-				castbar.Text:SetTextColor(0.84, 0.75, 0.65)
-				
-				self.Castbar.Time = castbar.time
+			castbar.Text = T.SetFontString(castbar, font1, 12)
+			castbar.Text:SetPoint("LEFT", castbar, "LEFT", 4, 0)
+			castbar.Text:SetTextColor(0.84, 0.75, 0.65)
+			
+			castbar.CustomDelayText = T.CustomCastDelayText
+			castbar.PostCastStart = T.CheckCast
+			castbar.PostChannelStart = T.CheckChannel
+									
+			self.Castbar = castbar
+			self.Castbar.Time = castbar.time
 			end
 		end
 		
