@@ -1,4 +1,4 @@
-local T, C, L, DB = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
+local T, C, L = unpack(select(2, ...)) -- Import Functions/Constants, Config, Locales
 
 local FONT = C["media"].font
 local FONTSIZE = 18
@@ -206,9 +206,9 @@ local function SkinCloseButton(f, point)
 	end
 end
 
-local ElvuiSkin = CreateFrame("Frame")
-ElvuiSkin:RegisterEvent("ADDON_LOADED")
-ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
+local TukuiSkin = CreateFrame("Frame")
+TukuiSkin:RegisterEvent("ADDON_LOADED")
+TukuiSkin:SetScript("OnEvent", function(self, event, addon)
 	if IsAddOnLoaded("Skinner") or IsAddOnLoaded("Aurora") then return end
 	
 	if addon == "Blizzard_ReforgingUI" then
@@ -3347,13 +3347,6 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				if event == "PLAYER_LOGIN" then
 					if not GetCVarBool("miniWorldMap") then
 						ToggleFrame(WorldMapFrame)
-						WorldMapFrameSizeDownButton:Click()	
-						WorldMapFrameSizeUpButton:Click()					
-						ToggleFrame(WorldMapFrame)
-					else
-						ToggleFrame(WorldMapFrame)
-						WorldMapFrameSizeUpButton:Click()
-						WorldMapFrameSizeDownButton:Click()
 						ToggleFrame(WorldMapFrame)
 					end
 				end
@@ -4903,8 +4896,10 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 			_G["InterfaceOptionsFrameOkay"]:ClearAllPoints()
 			_G["InterfaceOptionsFrameOkay"]:SetPoint("RIGHT",_G["InterfaceOptionsFrameCancel"],"LEFT", -4,0)
 			_G["ReadyCheckFrameYesButton"]:SetParent(_G["ReadyCheckFrame"])
-			_G["ReadyCheckFrameNoButton"]:SetParent(_G["ReadyCheckFrame"]) 
-			_G["ReadyCheckFrameYesButton"]:SetPoint("RIGHT", _G["ReadyCheckFrame"], "CENTER", -1, 0)
+			_G["ReadyCheckFrameNoButton"]:SetParent(_G["ReadyCheckFrame"])
+			_G["ReadyCheckFrameYesButton"]:ClearAllPoints()
+			_G["ReadyCheckFrameNoButton"]:ClearAllPoints()
+			_G["ReadyCheckFrameYesButton"]:SetPoint("RIGHT", _G["ReadyCheckFrame"], "CENTER", -2, -20)
 			_G["ReadyCheckFrameNoButton"]:SetPoint("LEFT", _G["ReadyCheckFrameYesButton"], "RIGHT", 3, 0)
 			_G["ReadyCheckFrameText"]:SetParent(_G["ReadyCheckFrame"])	
 			_G["ReadyCheckFrameText"]:ClearAllPoints()
