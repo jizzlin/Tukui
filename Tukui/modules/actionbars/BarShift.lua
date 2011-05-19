@@ -64,7 +64,7 @@ bar:SetScript("OnEvent", function(self, event, ...)
 			button:SetParent(self)
 			button:SetFrameStrata("LOW")
 			if i == 1 then
-					button:Point("BOTTOMLEFT", TukuiShift, 0, 24)
+				button:Point("BOTTOMLEFT", TukuiShift, 0, 24)
 			else
 				local previous = _G["ShapeshiftButton"..i-1]
 				if C.actionbar.ShpShftOverPlayer == true then
