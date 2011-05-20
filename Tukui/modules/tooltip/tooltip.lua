@@ -356,7 +356,7 @@ local BorderColor = function(self)
 end
 
 local SetStyle = function(self)
-	self:SetTemplate("Default")
+	self:SetTemplate("Transparent")
 	BorderColor(self)
 end
 
@@ -370,7 +370,7 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 		
 		ItemRefTooltip:HookScript("OnTooltipSetItem", SetStyle)
 		ItemRefTooltip:HookScript("OnShow", SetStyle)	
-		FriendsTooltip:SetTemplate("Default")
+		FriendsTooltip:SetTemplate("Transparent")
 			
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 		
@@ -401,11 +401,11 @@ TukuiTooltip:SetScript("OnEvent", function(self, event, addon)
 			FrameStackTooltip:SetScale(C.general.uiscale)
 			
 			-- Skin it
-			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+			FrameStackTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
 		end
 		
 		if EventTraceTooltip then
-			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Default") end)
+			EventTraceTooltip:HookScript("OnShow", function(self) self:SetTemplate("Transparent") end)
 		end
 	end
 end)

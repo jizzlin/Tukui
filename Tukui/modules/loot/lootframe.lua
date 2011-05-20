@@ -159,7 +159,7 @@ addon:Point("TOPLEFT", 0, -104)
 addon:SetTemplate("Default")
 addon:Width(256)
 addon:Height(64)
-addon:SetBackdropColor(0.1, 0.1, 0.1, 1)
+addon:SetBackdropColor(0.1, 0.1, 0.1, .8)
 
 addon:SetClampedToScreen(true)
 addon:SetClampRectInsets(0, 0, T.Scale(14), 0)
