@@ -468,7 +468,7 @@ function Stuffing:InitBags()
 	editbox:Hide()
 	editbox:SetAutoFocus(true)
 	editbox:Height(32)
-	editbox:SetTemplate("Default")
+	editbox:SetTemplate("Transparent")
 
 	local resetAndClear = function (self)
 		self:GetParent().detail:Show()
@@ -602,29 +602,14 @@ function Stuffing:Layout(lb)
 	end
 
 	f:SetClampedToScreen(1)
-	f:SetBackdrop({
-		bgFile = C["media"].blank,
-		edgeFile = C["media"].blank,
-		edgeSize = T.mult,
-		insets = {left = -T.mult, right = -T.mult, top = -T.mult, bottom = -T.mult}
-	})
-	f:SetBackdropColor(unpack(C["media"].backdropcolor))
-	f:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-
+	f:SetTemplate("Transparent")
 
 	-- bag frame stuff
 	local fb = f.bags_frame
 	if bag_bars == 1 then
 		fb:SetClampedToScreen(1)
-		fb:SetBackdrop({
-			bgFile = C["media"].blank,
-			edgeFile = C["media"].blank,
-			edgeSize = T.mult,
-			insets = {left = -T.mult, right = -T.mult, top = -T.mult, bottom = -T.mult}
-		})
-		fb:SetBackdropColor(unpack(C["media"].backdropcolor))
-		fb:SetBackdropBorderColor(unpack(C["media"].bordercolor))
-
+		fb:SetTemplate("Transparent")
+		
 		local bsize = 30
 		if lb then bsize = 37 end
 
@@ -719,7 +704,7 @@ function Stuffing:Layout(lb)
 				b.frame:SetPushedTexture("")
 				b.frame:SetNormalTexture("")
 				b.frame:Show()
-				b.frame:SetTemplate("Default")
+				b.frame:SetTemplate("Transparent")
 				b.frame:SetBackdropColor(0, 0, 0, 0) -- we just need border with SetTemplate, not the backdrop. Hopefully this will fix invisible item that some users have.
 				b.frame:StyleButton()
 				
@@ -887,7 +872,7 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 		keybackdrop:Point("TOPLEFT", 9, -40)
 		keybackdrop:Point("BOTTOMLEFT", 0, 0)
 		keybackdrop:Size(179,215)
-		keybackdrop:SetTemplate("Default")
+		keybackdrop:SetTemplate("Transparent")
 		ContainerFrame1CloseButton:Hide()
 		ContainerFrame1Portrait:Hide()
 		ContainerFrame1Name:Hide()
@@ -903,7 +888,7 @@ function Stuffing:PLAYER_ENTERING_WORLD()
 			t:SetTexCoord(.08, .92, .08, .92)
 			t:Point("TOPLEFT", slot, 2, -2)
 			t:Point("BOTTOMRIGHT", slot, -2, 2)
-			slot:SetTemplate("Default")
+			slot:SetTemplate("Transparent")
 			slot:SetBackdropColor(0, 0, 0, 0)
 			slot:StyleButton()
 		end		
