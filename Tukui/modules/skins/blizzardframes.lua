@@ -4741,8 +4741,13 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 			}
 			
 			for i = 1, getn(skins) do
+<<<<<<< HEAD
 				_G[skins[i]]:SetTemplate("Transparent")
 				if _G[skins[i]] ~= _G["GhostFrameContentsFrame"] or _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
+=======
+				_G[skins[i]]:SetTemplate("Default")
+				if _G[skins[i]] ~= _G["AutoCompleteBox"] then -- frame to blacklist from create shadow function
+>>>>>>> upstream/master
 					_G[skins[i]]:CreateShadow("Default")
 				end
 			end
@@ -4823,6 +4828,7 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				SkinButton(GameMenuButtonOptionHouse)
 			end
 			
+<<<<<<< HEAD
 			-- skin return to graveyard button
 			do
 				SkinButton(GhostFrame)
@@ -4836,7 +4842,7 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				GhostFrameContentsFrameIcon:SetTexture(nil)
 				local x = CreateFrame("Frame", nil, GhostFrame)
 				x:SetFrameStrata("MEDIUM")
-				x:SetTemplate("Transparent")
+				x:SetTemplate("Default")
 				x:SetPoint("TOPLEFT", GhostFrameContentsFrameIcon, "TOPLEFT", T.Scale(-2), T.Scale(2))
 				x:SetPoint("BOTTOMRIGHT", GhostFrameContentsFrameIcon, "BOTTOMRIGHT", T.Scale(2), T.Scale(-2))
 				local tex = x:CreateTexture(nil, "OVERLAY")
@@ -4846,6 +4852,8 @@ ElvuiSkin:SetScript("OnEvent", function(self, event, addon)
 				tex:SetPoint("BOTTOMRIGHT", x, "BOTTOMRIGHT", T.Scale(-2), T.Scale(2))
 			end
 			
+=======
+>>>>>>> upstream/master
 			-- hide header textures and move text/buttons.
 			local BlizzardHeader = {
 				"GameMenuFrame", 
