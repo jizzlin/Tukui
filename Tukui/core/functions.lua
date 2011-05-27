@@ -722,7 +722,7 @@ local CheckInterrupt = function(self, unit)
 	if self.interrupt and UnitCanAttack("player", unit) then
 		self:SetStatusBarColor(1, 0, 0, 0.5)	
 	else
-		self:SetStatusBarColor(0.31, 0.45, 0.63, 0.5)		
+		self:SetStatusBarColor(unpack(oUF.colors.class[T.myclass]))		
 	end
 end
 

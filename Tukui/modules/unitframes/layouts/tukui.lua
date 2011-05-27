@@ -425,15 +425,15 @@ local function Shared(self, unit)
 							if T.lowversion then
 								bars[i]:Width(62)
 							else
-								bars[i]:Width(68) -- setting SetWidth here just to fit fit perfectly
+								bars[i]:Width(70) -- setting SetWidth here just to fit fit perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						else
-							bars[i]:Point("LEFT", bars[i-1], "RIGHT", 8, 0)
+							bars[i]:Point("LEFT", bars[i-1], "RIGHT", 10, 0)
 							if T.lowversion then
 								bars[i]:Width(61)
 							else
-								bars[i]:Width(68) -- setting SetWidth here just to fit fit perfectly
+								bars[i]:Width(70) -- setting SetWidth here just to fit fit perfectly
 							end
 							bars[i].bg:SetAllPoints(bars[i])
 						end
@@ -521,7 +521,7 @@ local function Shared(self, unit)
 						local fixme
 						--My way cause I screwed up the original code (its shorter too :D)
 						if i == 1 then fixme = 1 elseif i == 2 then fixme = 0 else fixme = i-1 end
-						TotemBar[i]:Point("BOTTOMLEFT", health, "TOPLEFT", 10+57*fixme, -2)
+						TotemBar[i]:Point("BOTTOMLEFT", health, "TOPLEFT", 10+60*fixme, -2)
 						TotemBar[i]:SetStatusBarTexture(normTex)
 						TotemBar[i]:Height(7)
 						if T.lowversion then
@@ -531,7 +531,7 @@ local function Shared(self, unit)
 								TotemBar[i]:SetWidth(46)
 							end
 						else
-							TotemBar[i]:SetWidth(49)
+							TotemBar[i]:SetWidth(50)
 						end
 						TotemBar[i]:SetBackdrop(backdrop)
 						TotemBar[i]:SetBackdropColor(0, 0, 0)
@@ -646,7 +646,7 @@ local function Shared(self, unit)
 				buffs.num = 9
 				
 				debuffs:SetHeight(26)
-				debuffs:SetWidth(226)
+				debuffs:SetWidth(252)
 				debuffs:SetPoint("BOTTOMLEFT", buffs, "TOPLEFT", -2, 2)
 				debuffs.size = 26
 				debuffs.num = 27
@@ -679,26 +679,27 @@ local function Shared(self, unit)
 			local castbar = CreateFrame("StatusBar", self:GetName().."CastBar", self)
 			castbar:SetStatusBarTexture(normTex)
 			
-			castbar.bg = castbar:CreateTexture(nil, "BORDER")
-			castbar.bg:SetAllPoints(castbar)
-			castbar.bg:SetTexture(normTex)
-			castbar.bg:SetVertexColor(0.15, 0.15, 0.15)
+			--castbar.bg = castbar:CreateTexture(nil, "BORDER")
+			--castbar.bg:SetAllPoints(castbar)
+			--castbar.bg:SetTexture(normTex)
+			--castbar.bg:SetVertexColor(0.15, 0.15, 0.15)
 			castbar:SetFrameLevel(6)
 			if unit == "player" then
 				castbar:Point("TOPLEFT", UIParent, "CENTER", -160, -156)
-				castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, -180)
+				castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, -184)
 			else
-				castbar:Point("TOPLEFT", UIParent, "CENTER", -160, 324)
+				castbar:Point("TOPLEFT", UIParent, "CENTER", -160, 328)
 				castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, 300)
 			end
 			
 			--BG and border for castbar
-			castbar.bg = CreateFrame("Frame", nil, castbar)
-			castbar.bg:SetTemplate(self,'Tukui')
-			castbar.bg:Point("TOPLEFT", -2, 2)
-			castbar.bg:Point("BOTTOMRIGHT", 2, -2)
-			castbar.bg:SetFrameLevel(5)
-			castbar.bg:CreateShadow(self)
+			castbar.Bg = CreateFrame("Frame", nil, castbar)
+			castbar.Bg:SetTemplate('Transparent')
+			castbar.Bg:SetBackdropBorderColor(0.3, 0.3, 0.3)	
+			castbar.Bg:Point("TOPLEFT", -2, 2)
+			castbar.Bg:Point("BOTTOMRIGHT", 2, -2)
+			castbar.Bg:SetFrameLevel(5)
+			castbar.Bg:CreateShadow(self)
 			
 			castbar.CustomTimeText = T.CustomCastTimeText
 			castbar.CustomDelayText = T.CustomCastDelayText
@@ -717,11 +718,12 @@ local function Shared(self, unit)
 			if C["unitframes"].cbicons == true then
 				castbar.button = CreateFrame("Frame", nil, castbar)
 				if unit == 'player' then
-					castbar.button:Size(28)
+					castbar.button:Size(32)
 				else
 					castbar.button:Size(40)
 				end
 				castbar.button:SetTemplate("Default")
+				castbar.button:SetBackdropBorderColor(0.3, 0.3, 0.3)
 				castbar.button:CreateShadow("Default")
 
 				castbar.icon = castbar.button:CreateTexture(nil, "ARTWORK")
@@ -1670,7 +1672,7 @@ local function Shared(self, unit)
 	--	Main tanks and Main Assists layout (both mirror'd)
 	------------------------------------------------------------------------
 	
-	if unit == "maintank" or unit == "mainassist" or unit == "maintanktarget" or unit == "mainassisttarget" then
+	if(self:GetParent():GetName():match"TukuiMainTank" or self:GetParent():GetName():match"TukuiMainAssist") then
 		-- Right-click focus on maintank or mainassist units
 		self:SetAttribute("type2", "focus")
 		
@@ -1740,7 +1742,7 @@ player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 15+adju
 if T.lowversion then
 	player:Size(186, 51)
 else
-	player:Size(240, 36)
+	player:Size(250, 36)
 end
 
 -- focus
@@ -1754,7 +1756,7 @@ target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 15+a
 if T.lowversion then
 	target:Size(186, 51)
 else
-	target:Size(240, 36)
+	target:Size(250, 36)
 end
 
 -- tot

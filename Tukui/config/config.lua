@@ -1,12 +1,12 @@
 ﻿local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
 C["general"] = {
-	["autoscale"] = false,                               -- mainly enabled for users that don't want to mess with the config file
-	["uiscale"] = 768/1050,                                 -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
+	["autoscale"] = false,                              -- mainly enabled for users that don't want to mess with the config file
+	["uiscale"] = 768/1050,                             -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,                      -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
 	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
-	["backdropcolor"] = { .1,.1,.1 },                   -- default backdrop color of panels
-	["bordercolor"] = { .6,.6,.6 },                     -- default border color of panels
+	["backdropcolor"] = { .1, .1, .1 },                 -- default backdrop color of panels
+	["bordercolor"] = { .45, .45, .45 },                -- default border color of panels
 }
 
 C["unitframes"] = {
@@ -28,8 +28,8 @@ C["unitframes"] = {
 	["charportrait"] = false,                           -- do i really need to explain this?
 	["maintank"] = false,                               -- enable maintank
 	["mainassist"] = false,                             -- enable mainassist
-	["unicolor"] = true,                               -- enable unicolor theme
-	["combatfeedback"] = false,                          -- enable combattext on player and target.
+	["unicolor"] = true,                                -- enable unicolor theme
+	["combatfeedback"] = false,                         -- enable combattext on player and target.
 	["playeraggro"] = true,                             -- color player border to red if you have aggro on current target.
 	["healcomm"] = false,                               -- enable healprediction support.
 	["onlyselfdebuffs"] = false,                        -- display only our own debuffs applied on target
@@ -115,7 +115,7 @@ C["datatext"] = {
 
 	["battleground"] = true,                            -- enable 3 stats in battleground only that replace stat1,stat2,stat3.
 	["time24"] = true,                                  -- set time to 24h format.
-	["localtime"] = true,                              -- set time to local time instead of server time.
+	["localtime"] = true,                               -- set time to local time instead of server time.
 	["fontsize"] = 12,                                  -- font size for panels.
 }
 
@@ -157,7 +157,7 @@ C["error"] = {
 }
 
 C["invite"] = { 
-	["autoaccept"] = false,                              -- auto-accept invite from guildmate and friends.
+	["autoaccept"] = false,                             -- auto-accept invite from guildmate and friends.
 }
 
 C["buffreminder"] = {
