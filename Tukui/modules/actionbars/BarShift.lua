@@ -8,7 +8,7 @@ if not C["actionbar"].enable == true then return end
 -- used for anchor totembar or shapeshiftbar
 local TukuiShift = CreateFrame("Frame","TukuiShiftBar",UIParent)
 if C.actionbar.ShpShftOverPlayer == true then
-	TukuiShift:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 12, 37)
+	TukuiShift:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 15, 37)
 else
 	TukuiShift:SetPoint("TOPLEFT", 4, -46)
 end
