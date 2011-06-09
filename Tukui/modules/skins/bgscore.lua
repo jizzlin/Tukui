@@ -3,7 +3,7 @@ local T, C, L = unpack(select(2, ...))
 local function LoadSkin()
 	WorldStateScoreScrollFrame:StripTextures()
 	WorldStateScoreFrame:StripTextures()
-	WorldStateScoreFrame:SetTemplate("Default")
+	WorldStateScoreFrame:SetTemplate("Transparent")
 	T.SkinCloseButton(WorldStateScoreFrameCloseButton)
 	WorldStateScoreFrameInset:Kill()
 	T.SkinButton(WorldStateScoreFrameLeaveButton)
@@ -12,7 +12,7 @@ local function LoadSkin()
 		local b = _G["WorldStateScoreButton"..i]
 		b:StripTextures()
 		b:StyleButton(false)
-		b:SetTemplate("Default", true)
+		b:SetTemplate("Transparent", true)
 	end
 
 	for i = 1, 3 do 

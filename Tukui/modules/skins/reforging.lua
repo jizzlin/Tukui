@@ -2,7 +2,7 @@ local T, C, L = unpack(select(2, ...))
 
 local function LoadSkin()
 	ReforgingFrame:StripTextures()
-	ReforgingFrame:SetTemplate("Default")
+	ReforgingFrame:SetTemplate("Transparent")
 	
 	ReforgingFrameTopInset:StripTextures()
 	ReforgingFrameInset:StripTextures()
@@ -15,7 +15,7 @@ local function LoadSkin()
 	T.SkinDropDownBox(ReforgingFrameFilterNewStat, 180)
 	
 	ReforgingFrameItemButton:StripTextures()
-	ReforgingFrameItemButton:SetTemplate("Default", true)
+	ReforgingFrameItemButton:SetTemplate("Transparent", true)
 	ReforgingFrameItemButton:StyleButton()
 	ReforgingFrameItemButtonIconTexture:ClearAllPoints()
 	ReforgingFrameItemButtonIconTexture:Point("TOPLEFT", 2, -2)

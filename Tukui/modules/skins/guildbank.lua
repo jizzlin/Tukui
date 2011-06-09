@@ -2,7 +2,7 @@ local T, C, L = unpack(select(2, ...))
 
 local function LoadSkin()
 	GuildBankFrame:StripTextures()
-	GuildBankFrame:SetTemplate("Default")
+	GuildBankFrame:SetTemplate("Transparent")
 	GuildBankEmblemFrame:StripTextures(true)
 	
 	--Close button doesn't have a fucking name, extreme hackage
@@ -24,7 +24,7 @@ local function LoadSkin()
 	GuildBankTransactionsScrollFrame:StripTextures()
 	
 	GuildBankFrame.inset = CreateFrame("Frame", nil, GuildBankFrame)
-	GuildBankFrame.inset:SetTemplate("Default")
+	GuildBankFrame.inset:SetTemplate("Transparent")
 	GuildBankFrame.inset:Point("TOPLEFT", 30, -65)
 	GuildBankFrame.inset:Point("BOTTOMRIGHT", -20, 63)
 	
@@ -36,7 +36,7 @@ local function LoadSkin()
 			local icon = _G["GuildBankColumn"..i.."Button"..x.."IconTexture"]
 			button:StripTextures()
 			button:StyleButton()
-			button:SetTemplate("Default", true)
+			button:SetTemplate("Transparent", true)
 			
 			icon:ClearAllPoints()
 			icon:Point("TOPLEFT", 2, -2)
@@ -52,7 +52,7 @@ local function LoadSkin()
 		
 		button:StripTextures()
 		button:StyleButton(true)
-		button:SetTemplate("Default", true)
+		button:SetTemplate("Transparent", true)
 		
 		texture:ClearAllPoints()
 		texture:Point("TOPLEFT", 2, -2)
@@ -67,7 +67,7 @@ local function LoadSkin()
 	--Popup
 	GuildBankPopupFrame:StripTextures()
 	GuildBankPopupScrollFrame:StripTextures()
-	GuildBankPopupFrame:SetTemplate("Default")
+	GuildBankPopupFrame:SetTemplate("Transparent")
 	GuildBankPopupFrame:Point("TOPLEFT", GuildBankFrame, "TOPRIGHT", 1, -30)
 	T.SkinButton(GuildBankPopupOkayButton)
 	T.SkinButton(GuildBankPopupCancelButton)
@@ -80,7 +80,7 @@ local function LoadSkin()
 		local button = _G["GuildBankPopupButton"..i]
 		local icon = _G[button:GetName().."Icon"]
 		button:StripTextures()
-		button:SetTemplate("Default")
+		button:SetTemplate("Transparent")
 		button:StyleButton(true)
 		icon:ClearAllPoints()
 		icon:Point("TOPLEFT", 2, -2)
