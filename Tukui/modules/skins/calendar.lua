@@ -49,7 +49,7 @@ local function LoadSkin()
 	CalendarContextMenu.SetBackdropColor = T.dummy
 	CalendarContextMenu.SetBackdropBorderColor = T.dummy
 	
-	CalendarInviteStatusContextMenu:SetTemplate("Default")
+	CalendarInviteStatusContextMenu:SetTemplate("Transparent")
 	CalendarInviteStatusContextMenu.SetBackdropColor = T.dummy
 	CalendarInviteStatusContextMenu.SetBackdropBorderColor = T.dummy
 	
@@ -179,7 +179,7 @@ local function LoadSkin()
 	
 	-- too many event same day box
     CalendarEventPickerFrame:StripTextures()
-	CalendarEventPickerFrame:SetTemplate("Default")
+	CalendarEventPickerFrame:SetTemplate("Transparent")
 	CalendarEventPickerTitleFrame:StripTextures()
 
 	T.SkinScrollBar(CalendarEventPickerScrollBar)
