@@ -1,8 +1,8 @@
 ﻿local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
 
 C["general"] = {
-	["autoscale"] = false,                              -- mainly enabled for users that don't want to mess with the config file
-	["uiscale"] = 768/1050,                             -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
+	["autoscale"] = true,                              -- mainly enabled for users that don't want to mess with the config file
+	["uiscale"] = 768/768,                             -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 	["overridelowtohigh"] = false,                      -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
 	["multisampleprotect"] = true,                      -- i don't recommend this because of shitty border but, voila!
 	["backdropcolor"] = { .1, .1, .1 },                 -- default backdrop color of panels
@@ -75,6 +75,8 @@ C["actionbar"] = {
 	["petbuttonsize"] = 29,                             -- pet & stance buttons size
 	["buttonspacing"] = 4,                              -- buttons spacing
 	["ShpShftOverPlayer"] = false,						-- place the shapeshift bar over the player frame
+	["SideBarWidth"] = 6,								-- Set the number of buttons on the side bars
+	["ForceSideBars"] = true,							-- Force the side bars when on low resolution (has no effect in high res)
 }
 
 C["bags"] = {
@@ -93,14 +95,14 @@ C["cooldown"] = {
 }
 
 C["datatext"] = {
-	["fps_ms"] = 4,                                     -- show fps and ms on panels
-	["system"] = 5,                                     -- show total memory and others systems infos on panels
-	["bags"] = 6,                                       -- show space used in bags on panels
-	["gold"] = 1,                                       -- show your current gold on panels
+	["fps_ms"] = 1,                                     -- show fps and ms on panels
+	["system"] = 2,                                     -- show total memory and others systems infos on panels
+	["bags"] = 3,                                       -- show space used in bags on panels
+	["gold"] = 6,                                       -- show your current gold on panels
 	["wowtime"] = 8,                                    -- show time on panels
-	["guild"] = 2,                                      -- show number on guildmate connected on panels
+	["guild"] = 5,                                      -- show number on guildmate connected on panels
 	["dur"] = 7,                                        -- show your equipment durability on panels.
-	["friends"] = 3,                                    -- show number of friends connected.
+	["friends"] = 4,                                    -- show number of friends connected.
 	["dps_text"] = 0,                                   -- show a dps meter on panels
 	["hps_text"] = 0,                                   -- show a heal meter on panels
 	["power"] = 0,                                      -- show your attackpower/spellpower/healpower/rangedattackpower whatever stat is higher gets displayed
@@ -125,6 +127,7 @@ C["chat"] = {
 	["whispersound"] = true,                            -- play a sound when receiving whisper
 	["background"] = false,
 }
+T.InfoLeftRightWidth = 370								-- change size of the info bars/chat windows
 
 C["nameplate"] = {
 	["enable"] = true,                                  -- enable nice skinned nameplates that fit into tukui

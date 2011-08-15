@@ -1,5 +1,5 @@
 local T, C, L = unpack(select(2, ...)) -- Import: T - functions, constants, variables; C - config; L - locales
-if not C["actionbar"].enable == true or not T.lowversion then return end
+if not C["actionbar"].enable == true or not T.lowversion or C["actionbar"].ForceSideBars then return end
 
 local bar = TukuiBar7
 bar:SetAlpha(1)

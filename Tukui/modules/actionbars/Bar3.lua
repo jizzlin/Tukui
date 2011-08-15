@@ -17,11 +17,11 @@ for i= 1, 12 do
 	b:SetFrameLevel(15)
 	
 	if i == 1 then
-		b:SetPoint("BOTTOMLEFT", bar, T.buttonspacing, T.buttonspacing)
-	elseif i == 7 then
-		b:SetPoint("TOPLEFT", bar, T.buttonspacing, -T.buttonspacing)
-	else
-		b:SetPoint("LEFT", b2, "RIGHT", T.buttonspacing, 0)
+		b:SetPoint("BOTTOMRIGHT", bar, -T.buttonspacing, T.buttonspacing)
+	elseif i == C["actionbar"].SideBarWidth + 1 then
+		b:SetPoint("TOPRIGHT", bar, -T.buttonspacing, -T.buttonspacing)
+	elseif i < C["actionbar"].SideBarWidth * 2 + 1 then
+		b:SetPoint("RIGHT", b2, "LEFT", -T.buttonspacing, 0)
 	end
 end
 

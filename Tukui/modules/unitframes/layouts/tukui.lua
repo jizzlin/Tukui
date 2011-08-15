@@ -73,7 +73,7 @@ local function Shared(self, unit)
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
 		if T.lowversion then
-			health:Height(20)
+			health:Height(30)
 		else
 			health:Height(36)
 		end
@@ -128,7 +128,11 @@ local function Shared(self, unit)
 
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(7)
+		if T.lowversion then
+			power:Height(6)
+		else
+			power:Height(7)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 10, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -10, 2)
 		power:SetStatusBarTexture(normTex)
@@ -685,11 +689,21 @@ local function Shared(self, unit)
 			--castbar.bg:SetVertexColor(0.15, 0.15, 0.15)
 			castbar:SetFrameLevel(6)
 			if unit == "player" then
-				castbar:Point("TOPLEFT", UIParent, "CENTER", -160, -156)
-				castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, -184)
+				if T.lowversion then
+					castbar:Point("TOPLEFT", UIParent, "CENTER", -125, -108)
+					castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 125, -132)
+				else
+					castbar:Point("TOPLEFT", UIParent, "CENTER", -160, -156)
+					castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, -184)
+				end
 			else
-				castbar:Point("TOPLEFT", UIParent, "CENTER", -160, 328)
-				castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, 300)
+				if T.lowversion then
+					castbar:Point("TOPLEFT", UIParent, "CENTER", -125, 276)
+					castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 125, 252)
+				else
+					castbar:Point("TOPLEFT", UIParent, "CENTER", -160, 278)
+					castbar:Point("BOTTOMRIGHT", UIParent, "CENTER", 160, 250)
+				end
 			end
 			
 			--BG and border for castbar
@@ -706,21 +720,37 @@ local function Shared(self, unit)
 			castbar.PostCastStart = T.CheckCast
 			castbar.PostChannelStart = T.CheckChannel
 
-			castbar.time = T.SetFontString(castbar, font1, 14)
+			if T.lowversion then
+				castbar.time = T.SetFontString(castbar, font1, 12)
+			else
+				castbar.time = T.SetFontString(castbar, font1, 14)
+			end
 			castbar.time:Point("RIGHT", castbar, "RIGHT", -4, 0)
 			castbar.time:SetTextColor(0.84, 0.75, 0.65)
 			castbar.time:SetJustifyH("RIGHT")
 
-			castbar.Text = T.SetFontString(castbar, font1, 14)
+			if T.lowversion then
+				castbar.Text = T.SetFontString(castbar, font1, 12)
+			else
+				castbar.Text = T.SetFontString(castbar, font1, 14)
+			end
 			castbar.Text:Point("LEFT", castbar, "LEFT", 4, 0)
 			castbar.Text:SetTextColor(0.84, 0.75, 0.65)
 			
 			if C["unitframes"].cbicons == true then
 				castbar.button = CreateFrame("Frame", nil, castbar)
 				if unit == 'player' then
-					castbar.button:Size(32)
+					if T.lowversion then
+						castbar.button:Size(28)
+					else
+						castbar.button:Size(32)
+					end
 				else
-					castbar.button:Size(40)
+					if T.lowversion then
+						castbar.button:Size(34)
+					else
+						castbar.button:Size(40)
+					end
 				end
 				castbar.button:SetTemplate("Default")
 				castbar.button:SetBackdropBorderColor(0.3, 0.3, 0.3)
@@ -827,7 +857,11 @@ local function Shared(self, unit)
 	
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(26)
+		if T.lowversion then
+			health:Height(19)
+		else
+			health:Height(26)
+		end
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -868,7 +902,11 @@ local function Shared(self, unit)
 		
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:SetHeight(5)
+		if T.lowversion then
+			power:Height(4)
+		else
+			power:Height(5)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 5, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -5, 2)
 		power:SetStatusBarTexture(normTex)
@@ -909,7 +947,7 @@ local function Shared(self, unit)
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		if T.lowversion then
-			Name:SetPoint("CENTER", health, "CENTER", 0, 0)
+			Name:SetPoint("CENTER", health, "CENTER", 0, 2)
 			Name:SetFont(font1, 12, "OUTLINE")
 		else
 			Name:SetPoint("CENTER", health, "CENTER", 0, 2)
@@ -945,7 +983,11 @@ local function Shared(self, unit)
 		
 		-- health bar
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(26)
+		if T.lowversion then
+			health:Height(19)
+		else
+			health:Height(26)
+		end
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -991,7 +1033,11 @@ local function Shared(self, unit)
 		
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(5)
+		if T.lowversion then
+			power:Height(4)
+		else
+			power:Height(5)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 5, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -5, 2)
 		power:SetStatusBarTexture(normTex)
@@ -1024,7 +1070,7 @@ local function Shared(self, unit)
 		-- Unit name
 		local Name = health:CreateFontString(nil, "OVERLAY")
 		if T.lowversion then
-			Name:SetPoint("CENTER", self, "CENTER", 0, 0)
+			Name:SetPoint("CENTER", self, "CENTER", 0, 2)
 			Name:SetFont(font1, 12, "OUTLINE")
 		else
 			Name:SetPoint("CENTER", health, "CENTER", 0, 2)
@@ -1088,7 +1134,11 @@ local function Shared(self, unit)
 	if (unit == "focus") then
 		-- health 
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(30)
+		if T.lowversion then
+			health:Height(26)
+		else
+			health:Height(30)
+		end
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -1140,7 +1190,11 @@ local function Shared(self, unit)
 	
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(6)
+		if T.lowversion then
+			power:Height(5)
+		else
+			power:Height(6)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 7, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -7, 2)
 		power:SetStatusBarTexture(normTex)
@@ -1262,7 +1316,11 @@ local function Shared(self, unit)
 	if (unit == "focustarget") then
 		-- health 
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(30)
+		if T.lowversion then
+			health:Height(26)
+		else
+			health:Height(30)
+		end
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -1314,7 +1372,11 @@ local function Shared(self, unit)
 	
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(6)
+		if T.lowversion then
+			power:Height(5)
+		else
+			power:Height(6)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 7, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -7, 2)
 		power:SetStatusBarTexture(normTex)
@@ -1439,7 +1501,11 @@ local function Shared(self, unit)
 		
 		-- health 
 		local health = CreateFrame('StatusBar', nil, self)
-		health:Height(30)
+		if T.lowversion then
+			health:Height(26)
+		else
+			health:Height(30)
+		end
 		health:SetPoint("TOPLEFT")
 		health:SetPoint("TOPRIGHT")
 		health:SetStatusBarTexture(normTex)
@@ -1491,7 +1557,11 @@ local function Shared(self, unit)
 	
 		-- power
 		local power = CreateFrame('StatusBar', nil, self)
-		power:Height(6)
+		if T.lowversion then
+			power:Height(5)
+		else
+			power:Height(6)
+		end
 		power:Point("TOPLEFT", health, "BOTTOMLEFT", 7, 2)
 		power:Point("TOPRIGHT", health, "BOTTOMRIGHT", -7, 2)
 		power:SetStatusBarTexture(normTex)
@@ -1738,32 +1808,40 @@ oUF:RegisterStyle('Tukui', Shared)
 
 -- player
 local player = oUF:Spawn('player', "TukuiPlayer")
-player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 15+adjustXY)
 if T.lowversion then
-	player:Size(186, 51)
+	player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 15)
+	player:Size(183, 30)
 else
+	player:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 2, 15)
 	player:Size(250, 36)
 end
 
 -- focus
 local focus = oUF:Spawn('focus', "TukuiFocus")
-focus:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPLEFT", 0 - adjust, 246)
-focus:Size(200, 30)
+if T.lowversion then
+	focus:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPLEFT", -125, 246)
+	focus:Size(165, 26)
+else
+	focus:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPLEFT", 0, 246)
+	focus:Size(200, 30)
+end
 
 -- target
 local target = oUF:Spawn('target', "TukuiTarget")
-target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 15+adjustXY)
 if T.lowversion then
-	target:Size(186, 51)
+	target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 15)
+	target:Size(186, 30)
 else
+	target:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", -2, 15)
 	target:Size(250, 36)
 end
 
 -- tot
 local tot = oUF:Spawn('targettarget', "TukuiTargetTarget")
 if T.lowversion then
-	tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
-	tot:Size(186, 18)
+	--tot:SetPoint("BOTTOMRIGHT", InvTukuiActionBarBackground, "TOPRIGHT", 0,8)
+	tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 10)
+	tot:Size(110, 19)
 else
 	tot:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0, 14)
 	tot:Size(150, 26)
@@ -1772,8 +1850,9 @@ end
 -- pet
 local pet = oUF:Spawn('pet', "TukuiPet")
 if T.lowversion then
-	pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
-	pet:Size(186, 18)
+	--pet:SetPoint("BOTTOMLEFT", InvTukuiActionBarBackground, "TOPLEFT", 0,8)
+	pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,50+totdebuffs)
+	pet:Size(110, 19)
 else
 	pet:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOP", 0,56+totdebuffs)
 	pet:Size(150, 26)
@@ -1781,8 +1860,13 @@ end
 
 if C.unitframes.showfocustarget then
 	local focustarget = oUF:Spawn("focustarget", "TukuiFocusTarget")
-	focustarget:SetPoint("BOTTOM", focus, "TOP", 0 - adjust, 35)
-	focustarget:Size(200, 30)
+	if T.lowversion then
+		focustarget:SetPoint("BOTTOM", focus, "TOP", 0 , 35)
+		focustarget:Size(165, 26)
+	else
+		focustarget:SetPoint("BOTTOM", focus, "TOP", 0 , 35)
+		focustarget:Size(200, 30)
+	end
 end
 
 
@@ -1791,11 +1875,15 @@ if C.arena.unitframes then
 	for i = 1, 5 do
 		arena[i] = oUF:Spawn("arena"..i, "TukuiArena"..i)
 		if i == 1 then
-			arena[i]:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPRIGHT", 0 + adjust, 246)
+			arena[i]:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPRIGHT", 0 + adjust, 246 - adjust)
 		else
 			arena[i]:SetPoint("BOTTOM", arena[i-1], "TOP", 0, 35)
 		end
-		arena[i]:Size(200, 30)
+		if T.lowversion then
+			arena[i]:Size(200, 26)
+		else
+			arena[i]:Size(200, 30)
+		end
 	end
 end
 
@@ -1813,11 +1901,15 @@ if C["unitframes"].showboss then
 	for i = 1, MAX_BOSS_FRAMES do
 		boss[i] = oUF:Spawn("boss"..i, "TukuiBoss"..i)
 		if i == 1 then
-			boss[i]:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPRIGHT", 0 + adjust,246)
+			boss[i]:SetPoint("BOTTOM", InvTukuiActionBarBackground, "TOPRIGHT", 0 + adjust, 246 - adjust)
 		else
 			boss[i]:SetPoint('BOTTOM', boss[i-1], 'TOP', 0, 35)             
 		end
-		boss[i]:Size(200, 30)
+		if T.lowversion then
+			boss[i]:Size(200, 26)
+		else
+			boss[i]:Size(200, 30)
+		end
 	end
 end
 

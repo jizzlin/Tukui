@@ -7,7 +7,7 @@ local function ShowOrHideBar(bar, button)
 	local db = TukuiDataPerChar
 	
 	if bar:IsShown() then
-		if bar == TukuiBar5 and T.lowversion then
+		if bar == TukuiBar5 and (T.lowversion and not C["actionbar"].ForceSideBars) then
 			if button == TukuiBar5ButtonTop then
 				if TukuiBar7:IsShown() then
 					TukuiBar7:Hide()
@@ -47,7 +47,7 @@ local function ShowOrHideBar(bar, button)
 			TukuiBar3:SetHeight(TukuiBar1:GetHeight())
 			TukuiBar2Button:SetHeight(TukuiBar1:GetHeight())
 			TukuiBar3Button:SetHeight(TukuiBar1:GetHeight())
-			if not T.lowversion then
+			if not T.lowversion or C["actionbar"].ForceSideBars then
 				for i = 7, 12 do
 					local left = _G["MultiBarBottomLeftButton"..i]
 					local right = _G["MultiBarBottomRightButton"..i]
@@ -57,7 +57,7 @@ local function ShowOrHideBar(bar, button)
 			end
 		end
 	else
-		if bar == TukuiBar5 and T.lowversion then
+		if bar == TukuiBar5 and (T.lowversion and not C["actionbar"].ForceSideBars) then
 			if TukuiBar7:IsShown() then
 				TukuiBar7:Show()
 				TukuiBar5:SetWidth((T.buttonsize * 3) + (T.buttonspacing * 4))
@@ -78,7 +78,7 @@ local function ShowOrHideBar(bar, button)
 			TukuiBar3:SetHeight(TukuiBar4:GetHeight())
 			TukuiBar2Button:SetHeight(TukuiBar2:GetHeight())
 			TukuiBar3Button:SetHeight(TukuiBar3:GetHeight())
-			if not T.lowversion then
+			if not T.lowversion or C["actionbar"].ForceSideBars then
 				for i = 7, 12 do
 					local left = _G["MultiBarBottomLeftButton"..i]
 					local right = _G["MultiBarBottomRightButton"..i]
@@ -139,11 +139,11 @@ local function MoveButtonBar(button, bar)
 			buttontop:ClearAllPoints()
 			buttontop:Size(bar:GetWidth(), 17)
 			buttontop:Point("BOTTOM", bar, "TOP", 0, 2)
-			if not T.lowversion then buttontop.text:SetText("|cff4BAF4C>|r") end
+			if not T.lowversion or C["actionbar"].ForceSideBars then buttontop.text:SetText("|cff4BAF4C>|r") end
 			buttonbot:ClearAllPoints()
 			buttonbot:Size(bar:GetWidth(), 17)
 			buttonbot:Point("TOP", bar, "BOTTOM", 0, -2)
-			if not T.lowversion then buttonbot.text:SetText("|cff4BAF4C>|r") end
+			if not T.lowversion or C["actionbar"].ForceSideBars then buttonbot.text:SetText("|cff4BAF4C>|r") end
 				
 			-- move the pet
 			TukuiPetBar:ClearAllPoints()
@@ -153,11 +153,11 @@ local function MoveButtonBar(button, bar)
 			buttonbot:ClearAllPoints()
 			buttonbot:SetSize(TukuiLineToPetActionBarBackground:GetWidth(), TukuiLineToPetActionBarBackground:GetHeight())
 			buttonbot:Point("LEFT", TukuiPetBar, "RIGHT", 2, 0)
-			if not T.lowversion then buttonbot.text:SetText("|cff4BAF4C<|r") end
+			if not T.lowversion or C["actionbar"].ForceSideBars then buttonbot.text:SetText("|cff4BAF4C<|r") end
 			buttontop:ClearAllPoints()
 			buttontop:SetSize(TukuiLineToPetActionBarBackground:GetWidth(), TukuiLineToPetActionBarBackground:GetHeight())
 			buttontop:Point("LEFT", TukuiPetBar, "RIGHT", 2, 0)
-			if not T.lowversion then buttontop.text:SetText("|cff4BAF4C<|r") end
+			if not T.lowversion or C["actionbar"].ForceSideBars then buttontop.text:SetText("|cff4BAF4C<|r") end
 			
 			-- move the pet
 			TukuiPetBar:ClearAllPoints()
@@ -179,7 +179,7 @@ end
 local TukuiBar2Button = CreateFrame("Button", "TukuiBar2Button", UIParent)
 TukuiBar2Button:Width(17)
 TukuiBar2Button:SetHeight(TukuiBar2:GetHeight())
-if T.lowversion then
+if T.lowversion and not C["actionbar"].ForceSideBars then
 	TukuiBar2Button:Point("BOTTOMRIGHT", TukuiBar1, "BOTTOMLEFT", -2, 0)
 else
 	TukuiBar2Button:Point("BOTTOMRIGHT", TukuiBar2, "BOTTOMLEFT", -2, 0)
@@ -197,7 +197,7 @@ TukuiBar2Button.text:SetText("|cff4BAF4C>|r")
 local TukuiBar3Button = CreateFrame("Button", "TukuiBar3Button", UIParent)
 TukuiBar3Button:Width(17)
 TukuiBar3Button:SetHeight(TukuiBar3:GetHeight())
-if T.lowversion then
+if T.lowversion and not C["actionbar"].ForceSideBars then
 	TukuiBar3Button:Point("BOTTOMLEFT", TukuiBar1, "BOTTOMRIGHT", 2, 0)
 else
 	TukuiBar3Button:Point("BOTTOMLEFT", TukuiBar3, "BOTTOMRIGHT", 2, 0)
@@ -253,7 +253,7 @@ TukuiBar5ButtonBottom:SetScript("OnEnter", function(self) self:SetAlpha(1) end)
 TukuiBar5ButtonBottom:SetScript("OnLeave", function(self) self:SetAlpha(0) end)
 TukuiBar5ButtonBottom.text = T.SetFontString(TukuiBar5ButtonBottom, C.media.uffont, 20)
 TukuiBar5ButtonBottom.text:Point("CENTER", 1, 1)
-if T.lowversion then TukuiBar5ButtonBottom.text:SetText("|cff4BAF4C<|r") else TukuiBar5ButtonBottom.text:SetText("|cff4BAF4C>|r") end
+if T.lowversion and not C["actionbar"].ForceSideBars then TukuiBar5ButtonBottom.text:SetText("|cff4BAF4C<|r") else TukuiBar5ButtonBottom.text:SetText("|cff4BAF4C>|r") end
 
 -- exit vehicle button on left side of bottom action bar
 local vehicleleft = CreateFrame("Button", "TukuiExitVehicleButtonLeft", UIParent, "SecureHandlerClickTemplate")
@@ -293,11 +293,11 @@ init:SetScript("OnEvent", function(self, event)
 	if not TukuiDataPerChar then TukuiDataPerChar = {} end
 	local db = TukuiDataPerChar
 	
-	if not T.lowversion and db.hidebar2 then 
+	if (not T.lowversion or C["actionbar"].ForceSideBars) and db.hidebar2 then 
 		DrPepper(TukuiBar2Button, TukuiBar2)
 	end
 	
-	if not T.lowversion and db.hidebar3 then
+	if (not T.lowversion or C["actionbar"].ForceSideBars) and db.hidebar3 then
 		DrPepper(TukuiBar3Button, TukuiBar3)
 	end
 	
@@ -305,7 +305,7 @@ init:SetScript("OnEvent", function(self, event)
 		DrPepper(TukuiBar4Button, TukuiBar4)
 	end
 		
-	if T.lowversion then
+	if (T.lowversion and not C["actionbar"].ForceSideBars) then
 		-- because we use bar6.lua and bar7.lua with TukuiBar5Button for lower reso.
 		TukuiBar2Button:Hide()
 		TukuiBar3Button:Hide()

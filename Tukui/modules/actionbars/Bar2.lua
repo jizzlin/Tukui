@@ -20,9 +20,9 @@ for i=1, 12 do
 	
 	if i == 1 then
 		b:SetPoint("BOTTOMLEFT", bar, T.buttonspacing, T.buttonspacing)
-	elseif i == 7 then
+	elseif i == C["actionbar"].SideBarWidth + 1 then
 		b:SetPoint("TOPLEFT", bar, T.buttonspacing, -T.buttonspacing)
-	else
+	elseif i < C["actionbar"].SideBarWidth * 2 + 1 then
 		b:SetPoint("LEFT", b2, "RIGHT", T.buttonspacing, 0)
 	end
 end

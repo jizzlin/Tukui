@@ -220,26 +220,25 @@ local function LoadSkin()
 	GuildTextEditFrame:SetTemplate("Transparent")
 	T.SkinScrollBar(GuildTextEditScrollFrameScrollBar)
 	GuildTextEditContainer:SetTemplate("Transparent")
-	for i = 1, GuildTextEditFrame:GetNumChildren() do
+	for i=1, GuildTextEditFrame:GetNumChildren() do
 		local child = select(i, GuildTextEditFrame:GetChildren())
-		local point = select(1, child:GetPoint())
-		if point == "TOPRIGHT" then
+		if child:GetName() == "GuildTextEditFrameCloseButton" and child:GetWidth() == 32 then
 			T.SkinCloseButton(child)
-		else
+		elseif child:GetName() == "GuildTextEditFrameCloseButton" then
 			T.SkinButton(child, true)
 		end
 	end
-
+	
 	--Guild Log
 	T.SkinScrollBar(GuildLogScrollFrameScrollBar)
 	GuildLogFrame:SetTemplate("Transparent")
 
-	for i = 1, GuildLogFrame:GetNumChildren() do
+	--Blizzard has two buttons with the same name, this is a fucked up way of determining that it isn't the other button
+	for i=1, GuildLogFrame:GetNumChildren() do
 		local child = select(i, GuildLogFrame:GetChildren())
-		local point = select(1, child:GetPoint())
-		if point == "TOPRIGHT" then
+		if child:GetName() == "GuildLogFrameCloseButton" and child:GetWidth() == 32 then
 			T.SkinCloseButton(child)
-		else
+		elseif child:GetName() == "GuildLogFrameCloseButton" then
 			T.SkinButton(child, true)
 		end
 	end
