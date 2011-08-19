@@ -348,35 +348,37 @@ local function Shared(self, unit)
 				local DruidMana = T.SetFontString(health, font1, 12)
 				DruidMana:SetTextColor(1, 0.49, 0.04)
 				self.DruidManaText = DruidMana
-				
-				local DruidManaBackground = CreateFrame("Frame", nil, self)
-				DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
-				if T.lowversion then
-					DruidManaBackground:Size(186, 8)
-				else
-					DruidManaBackground:Size(250, 8)
-				end
-				DruidManaBackground:SetFrameLevel(8)
-				DruidManaBackground:SetFrameStrata("MEDIUM")
-				DruidManaBackground:SetTemplate("Default")
-				DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
-				
-				local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
-				DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
-				DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
-				DruidManaBarStatus:SetStatusBarTexture(normTex)
-				DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
-				
-				DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
-				DruidManaBackground:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
-				DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
-				
-				self.DruidManaBackground = DruidManaBackground
-				self.DruidMana = DruidManaBarStatus
 			end
 			
 			if C["unitframes"].classbar then
-				if T.myclass == "DRUID" then			
+				if T.myclass == "DRUID" then
+					-- DRUID MANA BAR
+					local DruidManaBackground = CreateFrame("Frame", nil, self)
+					DruidManaBackground:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
+					if T.lowversion then
+						DruidManaBackground:Size(186, 8)
+					else
+						DruidManaBackground:Size(250, 8)
+					end
+					DruidManaBackground:SetFrameLevel(8)
+					DruidManaBackground:SetFrameStrata("MEDIUM")
+					DruidManaBackground:SetTemplate("Default")
+					DruidManaBackground:SetBackdropBorderColor(0,0,0,0)
+					
+					local DruidManaBarStatus = CreateFrame('StatusBar', nil, DruidManaBackground)
+					DruidManaBarStatus:SetPoint('LEFT', DruidManaBackground, 'LEFT', 0, 0)
+					DruidManaBarStatus:SetSize(DruidManaBackground:GetWidth(), DruidManaBackground:GetHeight())
+					DruidManaBarStatus:SetStatusBarTexture(normTex)
+					DruidManaBarStatus:SetStatusBarColor(.30, .52, .90)
+					
+					DruidManaBarStatus:SetScript("OnShow", function() T.DruidBarDisplay(self, false) end)
+					DruidManaBarStatus:SetScript("OnUpdate", function() T.DruidBarDisplay(self, true) end) -- just forcing 1 update on login for buffs/shadow/etc.
+					DruidManaBarStatus:SetScript("OnHide", function() T.DruidBarDisplay(self, false) end)
+					
+					self.DruidManaBackground = DruidManaBackground
+					self.DruidMana = DruidManaBarStatus
+					
+					-- ECLIPSE BAR
 					local eclipseBar = CreateFrame('Frame', nil, self)
 					eclipseBar:Point("BOTTOMLEFT", self, "TOPLEFT", 0, 1)
 					if T.lowversion then
@@ -1983,9 +1985,13 @@ local party = oUF:SpawnHeader("oUF_noParty", nil, "party", "showParty", true)
 -- Main Tank and Main Assist, use /maintank and /mainassist commands.
 ------------------------------------------------------------------------
 
+-- Hunter Dismiss Pet Taint (Blizzard issue)
+local PET_DISMISS = "PET_DISMISS"
+if T.myclass == "HUNTER" then PET_DISMISS = nil end
+
 do
 	UnitPopupMenus["SELF"] = { "PVP_FLAG", "LOOT_METHOD", "LOOT_THRESHOLD", "OPT_OUT_LOOT_TITLE", "LOOT_PROMOTE", "DUNGEON_DIFFICULTY", "RAID_DIFFICULTY", "RESET_INSTANCES", "RAID_TARGET_ICON", "SELECT_ROLE", "CONVERT_TO_PARTY", "CONVERT_TO_RAID", "LEAVE", "CANCEL" };
-	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", "CANCEL" };
+	UnitPopupMenus["PET"] = { "PET_PAPERDOLL", "PET_RENAME", "PET_ABANDON", PET_DISMISS, "CANCEL" };
 	UnitPopupMenus["PARTY"] = { "MUTE", "UNMUTE", "PARTY_SILENCE", "PARTY_UNSILENCE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "PROMOTE", "PROMOTE_GUIDE", "LOOT_PROMOTE", "VOTE_TO_KICK", "UNINVITE", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
 	UnitPopupMenus["PLAYER"] = { "WHISPER", "INSPECT", "INVITE", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" }
 	UnitPopupMenus["RAID_PLAYER"] = { "MUTE", "UNMUTE", "RAID_SILENCE", "RAID_UNSILENCE", "BATTLEGROUND_SILENCE", "BATTLEGROUND_UNSILENCE", "WHISPER", "INSPECT", "ACHIEVEMENTS", "TRADE", "FOLLOW", "DUEL", "RAID_TARGET_ICON", "SELECT_ROLE", "RAID_LEADER", "RAID_PROMOTE", "RAID_DEMOTE", "LOOT_PROMOTE", "RAID_REMOVE", "PVP_REPORT_AFK", "RAF_SUMMON", "RAF_GRANT_LEVEL", "CANCEL" };
